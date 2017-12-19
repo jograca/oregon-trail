@@ -95,8 +95,6 @@
 
     }
 
-        
-
     //The wagon class that implements the IWagon interface
     //This is currently in violation of its contract with the interface.
     //Create the code required to satisfy the contract with the interface 
@@ -109,23 +107,38 @@
             this.passengerArray = passengerArray;
         }
 
-        addPassenger() {
-
-            // this function should return the string 
-            // "added" on success and "sorry" on failure
-            return null;
+        addPassenger(Traveler) {
+            // If the overall capacity is less than the size of the array of passenges
+            // Add the Traveler
+            // Return the String "added"
+            if (this.capacity > this.passengerArray.length) {
+                this.passengerArray.push(Traveler);
+                return "added";
+            }
+            // If above condition is not met, return "sorry"
+            return "sorry";
         };
 
         isQuarantined() {
-
-            // returns a boolean
+            // Loop through the Passengers Array
+            // Return true if someone is not healthy
+            for (let i in this.passengerArray) {
+                if (!this.passengerArray[i].isHealthy) {
+                    return true;
+                }
+            }
             return false;
         };
 
         getFood() {
-
-            // returns total food (numbrer) for entire Wagon
-            return 0;       
+            // Set a variale to hold total food
+            // Loop through the Passengers Array and add all the food values
+            // Return the total food
+            let totalFood = 0;
+            for (let i in this.passengerArray) {
+                totalFood = totalFood + this.passengerArray[i].food;
+            }
+            return totalFood;       
         };
 
     }
